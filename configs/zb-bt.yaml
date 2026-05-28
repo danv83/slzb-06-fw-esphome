@@ -1,6 +1,6 @@
 # 1. SUBSTITUTIONS (Names to be used in sensor IDs)
 substitutions:
-  name: "slzb-06-zigbee_bluetooth"
+  name: "slzb-06-zigbee-bluetooth"
 
 
 # 2. GENERAL ESPHOME CONFIGURATION SETTINGS
@@ -22,7 +22,7 @@ esphome:
 ## Board information
 esp32:
   board: esp32dev
-  flash_size: 16MB
+#  flash_size: 16MB
   framework:
     type: arduino
 
@@ -30,15 +30,15 @@ esp32:
 api:
 
 ## Logger is enabled
-#logger:
+logger:
 
 ## OTA firmware updates are available
 ota:
   - platform: esphome
 ## Accessible portal with control buttons is available
-#web_server:
-#  port: 80
-#  local: True
+web_server:
+  port: 80
+  local: True
 
 ## WiFi settings
 #wifi:
@@ -59,7 +59,7 @@ external_components:
   - source: github://tube0013/esphome-stream-server-v2
 
 dashboard_import:
-  package_import_url: github://smlight-dev/slzb-06-fw-esphome/configs/zb-bt.yaml
+  package_import_url: github://danv83/slzb-06-fw-esphome/configs/zb-bt.yaml
 
 
 # 4. COMMUNICATION SETTINGS
@@ -192,7 +192,7 @@ switch:
       - switch.turn_off: zRST_gpio
 ## Full Restart
   - platform: template
-    name: "Full (Core+Zigbee) Restart"
+    name: "Full Core+Zigbee Restart"
     icon: mdi:toggle-switch
     id: fullRST
     turn_on_action:
@@ -222,7 +222,7 @@ switch:
 
 ## Mode LAN/USB switch
   - platform: template
-    name: "DEVICE MODE SWITCH (LAN|OFF / USB|ON)"
+    name: "DEVICE MODE SWITCH [LAN|OFF USB|ON]"
     id: modeSwitchTemplate
     turn_on_action:
       - switch.turn_on: gpio12LED1
@@ -238,7 +238,7 @@ switch:
           state: OFF
 
   - platform: gpio
-    name: "DEVICE MODE SWITCH (LAN|OFF / USB|ON)"
+    name: "DEVICE MODE SWITCH [LAN|OFF USB|ON]"
     restore_mode: ALWAYS_OFF
     icon: mdi:toggle-switch
     internal: true
